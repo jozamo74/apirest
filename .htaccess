@@ -1,0 +1,33 @@
+#Options -MultiViews
+# Permite reescribir las peticiones de URL
+RewriteEngine On
+
+# RewriteCond %{HTTP:Authorization} ^(.+)$
+# RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# Si el archivo y la carpeta no existen hacer siguiente reescritura
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# Redirecciona todas las peticiones a index
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+
+
+<files configDB.php>
+order allow,deny
+deny from all
+</files>
+
+
+
+# Options All -Indexes
+
+# Options -MultiViews
+# RewriteEngine On
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteRule ^ index.php [QSA,L]
+
+
+
